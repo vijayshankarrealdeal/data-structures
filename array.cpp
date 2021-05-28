@@ -1,84 +1,104 @@
-#include<iostream>
+#include <iostream>
 #include "input.cpp"
 
-class Array: Utils{
-    public:
-        Array()
+class Array : Utils
+{
+public:
+    Array()
+    {
+        inputData();
+    }
+    void print_with_pass(int array_r[])
+    {
+        print_task(array_r);
+    }
+    void print_without_pass()
+    {
+        for (int i = 0; i < size_; i++)
         {
-            inputData();
+            std::cout << array_[i] << "\t";
         }
-        void print_(int array_r[])
-        {
-            print_task(array_r);
-        }
-        void checkTheNumbers()
-        {
-            inputData();
-            print_task(array_);
-        }
-        int findMax()
-        {
-            int p = array_[0];
-            for(int i =0 ;i<size_;i++)
-            {
-                if(array_[i]>p)
-                {
-                    p = array_[i];
-                }
-            }
-            return p;
-        }
-        int searchaElement(int key_)
-        {
-            int p = 0;
-            for(int i = 0 ;i<size_;i++)
-            {
-                if(key_ == array_[i])
-                {
-                    p = array_[i];
-                }
-            }
-            return p;
-        }
+        std::cout << "\n";
+    }
 
-        int *make_a_copy()
+    void checkTheNumbers()
+    {
+        inputData();
+        print_task(array_);
+    }
+    int findMax()
+    {
+        int p = array_[0];
+        for (int i = 0; i < size_; i++)
         {
-            int *copy_array = new int(size_);
-            int i =0;
-            while (i<size_)
+            if (array_[i] > p)
             {
-                copy_array[i] = array_[i];
-                i++;
+                p = array_[i];
             }
-            return copy_array;
         }
-        int findMin()
+        return p;
+    }
+    void replace_a_element_(int key_, int replace_)
+    {
+        for (int i = 0; i < size_; i++)
         {
-            int p = array_[0];
-            for(int i =0 ;i<size_;i++)
+            if (replace_ == array_[i])
             {
-                if(array_[i]<p)
-                {
-                    p = array_[i];
-                }
+                array_[i] = key_;
+                break;
             }
-            return p;
         }
-        void invertTheArray()
+    }
+    int searchaElement(int key_)
+    {
+        int p = 0;
+        for (int i = 0; i < size_; i++)
         {
-            int array_temp_ [size_];
-            for(int i = 0;i<size_;i++)
+            if (key_ == array_[i])
             {
-                array_temp_[i] = array_[((size_-1) - i)];
+                p = array_[i];
             }
-            print_task(array_temp_);
         }
+        return p;
+    }
+
+    int *make_a_copy()
+    {
+        int *copy_array = new int(size_);
+        int i = 0;
+        while (i < size_)
+        {
+            copy_array[i] = array_[i];
+            i++;
+        }
+        return copy_array;
+    }
+    int findMin()
+    {
+        int p = array_[0];
+        for (int i = 0; i < size_; i++)
+        {
+            if (array_[i] < p)
+            {
+                p = array_[i];
+            }
+        }
+        return p;
+    }
+    void invertTheArray()
+    {
+        int array_temp_[size_];
+        for (int i = 0; i < size_; i++)
+        {
+            array_temp_[i] = array_[((size_ - 1) - i)];
+        }
+        print_task(array_temp_);
+    }
 };
 
 int main()
 {
     Array array;
-    int *array_copy = array.make_a_copy();
-    array.print_(array_copy);
-    delete(array_copy);
+    array.replace_a_element_(20, 3);
+    array.print_without_pass();
 }
