@@ -49,6 +49,17 @@ public:
             }
         }
     }
+    int * delete_element(int pos)
+    {
+         for(int i=pos-1; i<size_-1; i++)
+        {
+            array_[i] = array_[i + 1];
+        }
+
+        /* Decrement array size by 1 */
+        size_--;
+        return array_;
+    }
     int searchaElement(int key_)
     {
         int p = 0;
@@ -60,6 +71,26 @@ public:
             }
         }
         return p;
+    }
+    int *insert_element_(int key_, int after_)
+    {
+        int *provide_ = new int(size_ + 1);
+        int i = 0;
+        int j = 0;
+        while (i < size_ + 1)
+        {
+            provide_[i] = array_[j];
+            if (array_[j] == after_)
+            {
+                int temp_ = after_;
+                provide_[i] = key_;
+                provide_[i + 1] = temp_;
+                i++;
+            }
+            j++;
+            i++;
+        }
+        return provide_;
     }
 
     int *make_a_copy()
@@ -99,6 +130,9 @@ public:
 int main()
 {
     Array array;
-    array.replace_a_element_(20, 3);
-    array.print_without_pass();
+    int *x = array.delete_element(4);
+    for ( int i =0 ;i<9;i++)
+    {
+        std::cout<<x[i]<<"\t";
+    }
 }
