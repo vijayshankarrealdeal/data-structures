@@ -1,52 +1,102 @@
-#include<iostream>
+#include <iostream>
 
-class CircularQueue{
-    private:
-        int array_[3];
-        int front_,rear_ = -1;
-        int size_ = sizeof(array_)/sizeof(*array_);
-    public:
-        void transverse_()
-        {
+class CircularQueue
+{
+private:
+    int array_[3];
+    int front_, rear_ = -1;
+    int size_ = sizeof(array_) / sizeof(*array_);
 
-        }
-        bool queueFull_()
+public:
+    void transverse_()
+    {
+        int i = front_;
+        if (front_ = rear_ == -1)
         {
-            if(front_ == rear_)
+            std::cout << "Queue is Empty"
+                      << "\n";
+        }
+        else
+        {
+            while (i != rear_)
             {
-                return true;
-            }else{
-                return false;
+                std::cout << array_[i]<<"\t";
+                i = (i + 1) % size_;
+            }
+            std::cout << array_[rear_];
+        }
+        std::cout << "\n";
+    }
+    bool queueFull_()
+    {
+        if (front_ == (rear_ + 1) % size_)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool queueEmpty_()
+    {
+        if (front_ = rear_ == -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    void enqueue_(int element_)
+    {
+
+        if (queueFull_())
+        {
+            std::cout << "The queue is full\n";
+        }
+        else
+        {
+            if (front_ = rear_ == -1)
+            {
+                front_ = 0;
+                rear_ = 0;
+                array_[rear_] = element_;
+            }
+            else
+            {
+                rear_ = (rear_ + 1) % size_;
+                array_[rear_] = element_;
             }
         }
-        bool queueEmpty_()
+    }
+    void dequeue_()
+    {
+        if (queueEmpty_())
         {
-            if(front_=rear_ == -1 || (rear_%size_)==0 )
-            {
-                return true;
-            }else{
-                return false;
-            }
+            std::cout << "The queue is empty\n";
         }
-        void enqueue_(int element_)
+        else if (front_ == rear_)
         {
-            
-            if(queueFull_())
-            {
-                std::cout<<"The queue is full\n";
-            }else{
-                rear_ = (rear_+1)%size_;
-                array_[rear_++] = element_;
-            }
+            front_ = rear_ = -1;
         }
-        void dequeue_()
+        else
         {
-            if(queueEmpty_())
-            {
-                std::cout<<"The queue is empty\n";
-            }else{
-                front_ = (front_+1)%size_;
-                front_++;
-            }
+            front_ = (front_ + 1) % size_;
         }
+    }
 };
+int main()
+{
+    CircularQueue queue;
+    queue.enqueue_(29);
+    queue.enqueue_(20);
+    queue.enqueue_(30);
+    queue.enqueue_(40);
+    queue.enqueue_(50);
+    queue.enqueue_(60);
+    queue.dequeue_();
+    queue.dequeue_();
+    queue.transverse_();
+}
