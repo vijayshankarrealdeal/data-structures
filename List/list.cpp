@@ -47,6 +47,13 @@ public:
         {
             if (head_ != NULL)
             {
+                newnode_ = new node;
+                tempnode_ = head_;
+                while (tempnode_->data_ != element_)
+                {
+                    /* code */
+                }
+                
             }
             else
             {
