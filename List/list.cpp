@@ -47,7 +47,7 @@ public:
         {
             if (head_ != NULL)
             {
-                newnode_ = new node;
+                newnode_ = new  node;
                 newnode_->data_ = key_;
                 newnode_->next_ = NULL;
                 tempnode_ = head_;
@@ -59,7 +59,6 @@ public:
                 }
                 rel->next_ = newnode_;
                 newnode_->next_ = tempnode_;
-             
             }
             else
             {
