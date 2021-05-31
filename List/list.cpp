@@ -48,12 +48,18 @@ public:
             if (head_ != NULL)
             {
                 newnode_ = new node;
+                newnode_->data_ = key_;
+                newnode_->next_ = NULL;
                 tempnode_ = head_;
+                node *rel = new node;
                 while (tempnode_->data_ != element_)
                 {
-                    /* code */
+                    rel =tempnode_;
+                    tempnode_ = tempnode_->next_;
                 }
-                
+                rel->next_ = newnode_;
+                newnode_->next_ = tempnode_;
+             
             }
             else
             {
@@ -130,7 +136,7 @@ int main()
     {
         l.append_(i);
     }
+    l.insertAt(3, 45);
     l.transverse_();
-    l.insertAt(2, 45);
-    std::cout << l.last_();
+
 }
