@@ -38,6 +38,7 @@ class Polynomial{
 
         void addploy_(Polynomial a,Polynomial b)
         {
+            ///to be imple....
            struct poly *ptr1 = new poly;
            struct poly *ptr2 = new poly;
            ptr1 = a.head_;
