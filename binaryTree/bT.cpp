@@ -27,6 +27,7 @@ class BinaryTree{
                 root = tempnode_ = newnode_;
             }else
             {
+                tempnode_ = root;
                 
             }
             
