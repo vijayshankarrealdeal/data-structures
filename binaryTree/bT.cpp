@@ -31,44 +31,34 @@ public:
         }
         else
         {
-            tempnode_ = root_;
-            if (tempnode_->data_ < key_)
-            {
-                if (tempnode_->left_ == NULL)
-                {
-                    tempnode_ = newnode_;
-                    tempnode_ = tempnode_->left_;
-                }
-            }
-            else
-            {
-                if (tempnode_->data_ > key_)
-                {
-                    if (tempnode_->right_ == NULL)
-                    {
-                        tempnode_ = newnode_;
-                        tempnode_ = tempnode_->right_;
-                    }
-                }
-            }
         }
     }
-    void printX(struct node* root)
+    void printX(struct node *root)
     {
-        if(root_!=NULL)
+        if (root_ != NULL)
         {
             printX(root_->left_);
-            std::cout<<root_->data_;
+            std::cout << root_->data_;
             printX(root_->right_);
         }
     }
 };
+
+int f(int n)
+
+{
+    static int r = 0;
+    if(n<=0)
+    {
+        return 1;
+    }
+    if(n>3){
+        r = n;
+        return f(n-2)+2;
+    }
+    return f(n-1) + r;
+}
 int main()
 {
-    BinaryTree t;
-    t.insert(23);
-    t.insert(1);
-    t.insert(19);
-    t.insert(20);
-    t.printX(t);
+    std::cout<<f(5);
 }
