@@ -1,22 +1,19 @@
 #include <iostream>
 
-int getPeak(int value, int array[], int lower, int higher)
+int getPeak(int array[], int lower, int higher)
 {
     if (higher >= lower)
     {
         int mid = lower + (higher - 1) / 2;
-
-        if (array[mid] == value)
+        if (array[mid] < array[mid - 1])
         {
+            return getPeak(array, lower, mid - 1);
+        }
+        else if(array[mid] < array[mid + 1])
+        {
+            return getPeak(array, mid + 1, higher);
+        }else{
             return mid;
-        }
-        if (array[mid] > value)
-        {
-            return getPeak(value, array, lower, mid - 1);
-        }
-        else
-        {
-            return getPeak(value, array, mid + 1, higher);
         }
     }
 }
@@ -25,7 +22,13 @@ int main()
     int array[20];
     for (int i = 0; i < 20; i++)
     {
-        array[i] = i;
+        int k = rand();
+                array[i] =k ;
     }
-    std::cout << getPeak(5, array, 0, 19);
+    for (int i = 0; i < 20; i++)
+    {
+        std::cout<<array[i]<<"\t";
+    }
+
+    std::cout<<"\n" << getPeak(array, 0, 20);
 }
