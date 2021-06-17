@@ -18,22 +18,27 @@ void maxHeap(int array[], int n, int i)
         maxHeap(array, n, largest);
     }
 }
-void heapSort(int array[],int n)
-{
-    for (int j = n - 1; j >= 0; j--)
-    {
-        std::swap(array[0],array[j]);
-        maxHeap(array, n, 0);
+// void heapSort(int array[],int n)
+// {
+//     for (int j = n - 1; j >= 0; j--)
+//     {
+//         std::swap(array[0],array[j]);
+//         maxHeap(array, n, 0);
 
-    }
+//     }
     
-}
+// }
 int main()
 {
     int array[7] = {1, 2, 3, 4, 5, 6, 7};
   
     int n = sizeof(array) / sizeof(*array);
-    heapSort(array,n);
+   // heapSort(array,n);
+   for (int i = n/2 - 1; i >=0; i--)
+   {
+       maxHeap(array,n,i);
+   }
+   
     for (int i = 0; i < n; i++)
     {
         std::cout << array[i] << "\t";
