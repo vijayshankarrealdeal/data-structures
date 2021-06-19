@@ -109,14 +109,12 @@ struct node *deleteNode(struct node *root, int key)
 int main()
 {
     struct node *root = NULL;
-    int a[10] = {8, 3, 10, 1, 6, 4};
+    int a[100] = {8, 3, 10, 1, 6, 4};
     int n = sizeof(a) / sizeof(*a);
     for (int i = 0; i < n; i++)
     {
-        root = insert_node(root, a[i]);
+        root = insert_node(root, rand());
     }
-
-    deleteNode(root, 6);
     inorder(root);
     std::cout << "\n";
 }
