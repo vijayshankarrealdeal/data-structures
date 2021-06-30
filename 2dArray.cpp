@@ -1,5 +1,5 @@
 #include<iostream>
-
+///A 2d Array 
 int main()
 {
     int array[5][5];
@@ -18,6 +18,7 @@ int main()
         }
         std::cout<<"\n";
     }
+
     
     
 }
