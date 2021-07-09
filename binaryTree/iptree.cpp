@@ -38,7 +38,8 @@ public:
         {
             map[inorder[i]] = i;
         }
-        return construct(0, n - 1, postorder, n - 1, map);
+        int pIndex = n-1;
+        return construct(0, n - 1, postorder, pIndex, map);
     }
     void inorderPrint(Node *root)
     {
@@ -54,8 +55,8 @@ public:
 int main()
 {
     PostOrderInorder tree = PostOrderInorder();
-    std::vector<int> inorder{9, 3, 15, 20, 7};
-    std::vector<int> postorder{9, 15, 7, 20, 3};
+    std::vector<int> inorder={9, 3, 15, 20, 7};
+    std::vector<int> postorder={9, 15, 7, 20, 3};
     Node *root = tree.createTree(inorder, postorder);
     tree.inorderPrint(root);
     std::cout << "\n";
