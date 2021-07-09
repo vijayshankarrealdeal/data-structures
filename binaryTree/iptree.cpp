@@ -10,7 +10,6 @@ Node *newNode(int key)
     Node *node = new Node;
     node->key = key;
     node->left = node->right = nullptr;
-
     return node;
 }
 
@@ -28,6 +27,16 @@ Node *construct(int start, int end,
     root->left = construct(start, index - 1, postorder, pIndex, map);
     return root;
 }
+Node* construct(vector<int> const &inorder, vector<int> const &postorder)
+{
+    int n = inorder.size();
+    unordered_map<int, int> map;
+    for (int i = 0; i < inorder.size(); i++) {
+        map[inorder[i]] = i;
+    }
+    int pIndex = n - 1;
+    return construct(0, n - 1, postorder, pIndex, map);
+}
 
 void inorderTraversal(Node *root)
 {
@@ -41,16 +50,7 @@ void inorderTraversal(Node *root)
     inorderTraversal(root->right);
 }
 
-Node* construct(vector<int> const &inorder, vector<int> const &postorder)
-{
-    int n = inorder.size();
-    unordered_map<int, int> map;
-    for (int i = 0; i < inorder.size(); i++) {
-        map[inorder[i]] = i;
-    }
-    int pIndex = n - 1;
-    return construct(0, n - 1, postorder, pIndex, map);
-}
+
 
 int main()
 {
