@@ -1,63 +1,62 @@
 #include <bits/stdc++.h>
-
+using namespace std;
 struct Node
 {
     int key;
-    Node *left;
-    Node *right;
+    Node *left, *right;
 };
-
-class PostOrderInorder
+Node *newNode(int key)
 {
-private:
-    Node *construct(int start, int end, std::vector<int> &postorder, int pIndex, std::unordered_map<int, int> &map)
+    Node *node = new Node;
+    node->key = key;
+    node->left = node->right = nullptr;
+
+    return node;
+}
+
+Node *construct(int start, int end,
+                vector<int> const &postorder, int &pIndex,
+                unordered_map<int, int> &map)
+{
+    if (start > end)
     {
-        if (start > end)
-            return NULL;
-        Node *node = newNode(postorder[pIndex--]);
-        int index = map[node->key];
-        node->left = construct(start, index - 1, postorder, pIndex, map);
-        node->right = construct(index + 1, end, postorder, pIndex, map);
-        return node;
+        return nullptr;
     }
-    Node *newNode(int key)
+    Node *root = newNode(postorder[pIndex--]);
+    int index = map[root->key];
+    root->right = construct(index + 1, end, postorder, pIndex, map);
+    root->left = construct(start, index - 1, postorder, pIndex, map);
+    return root;
+}
+
+void inorderTraversal(Node *root)
+{
+    if (root == nullptr)
     {
-        Node *node = new Node;
-        node->key = key;
-        node->left = NULL;
-        node->right = NULL;
-        return node;
+        return;
     }
 
-public:
-    Node *createTree(std::vector<int> &inorder, std::vector<int> &postorder)
-    {
-        int n = inorder.size();
-        std::unordered_map<int, int> map;
-        for (int i = 0; i < n; i++)
-        {
-            map[inorder[i]] = i;
-        }
-        int pIndex = n-1;
-        return construct(0, n - 1, postorder, pIndex, map);
+    inorderTraversal(root->left);
+    cout << root->key << ' ';
+    inorderTraversal(root->right);
+}
+
+Node* construct(vector<int> const &inorder, vector<int> const &postorder)
+{
+    int n = inorder.size();
+    unordered_map<int, int> map;
+    for (int i = 0; i < inorder.size(); i++) {
+        map[inorder[i]] = i;
     }
-    void inorderPrint(Node *root)
-    {
-        if (root != NULL)
-        {
-            inorderPrint(root->left);
-            std::cout << root->key << "\t";
-            inorderPrint(root->right);
-        }
-    }
-};
+    int pIndex = n - 1;
+    return construct(0, n - 1, postorder, pIndex, map);
+}
 
 int main()
 {
-    PostOrderInorder tree = PostOrderInorder();
-    std::vector<int> inorder={9, 3, 15, 20, 7};
-    std::vector<int> postorder={9, 15, 7, 20, 3};
-    Node *root = tree.createTree(inorder, postorder);
-    tree.inorderPrint(root);
+    std::vector<int> inorder = {4, 2, 1, 7, 5, 8, 3, 6};
+    std::vector<int> postorder = {4, 2, 7, 8, 5, 6, 3, 1};
+    Node *root = construct(inorder, postorder);
+    inorderTraversal(root);
     std::cout << "\n";
 }
