@@ -126,6 +126,22 @@ public:
         remove_->next_ = NULL;
         delete (tempnode_);
     }
+    void reverse()
+    {
+        tempnode_ = head_;
+        node *prev = new node;
+        node *next = new node;
+        next = nullptr;
+        prev = nullptr;
+        while (tempnode_ != nullptr)
+        {
+            next = tempnode_->next_;
+            tempnode_->next_ = prev;
+            prev = tempnode_;
+            tempnode_ = next;
+        }
+        head_ = prev;
+    }
 };
 
 int main()
@@ -135,7 +151,9 @@ int main()
     {
         l.append_(i);
     }
-    l.insertAt(3, 45);
+    l.transverse_();
+    std::cout<<"\n";
+    l.reverse();
     l.transverse_();
 
 }
