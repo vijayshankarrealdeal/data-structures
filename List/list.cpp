@@ -9,10 +9,10 @@ struct node
 class List
 {
 private:
-    struct node *head_ = NULL;
     struct node *newnode_, *tempnode_;
-
 public:
+    struct node *head_ = NULL;
+    
     void transverse_()
     {
         ///Print the List
